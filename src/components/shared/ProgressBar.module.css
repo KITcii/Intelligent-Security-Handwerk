@@ -1,0 +1,7 @@
+.progressbarProgress {
+  --progress: 0;
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: calc(100 - var(--progress));
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-in-out;
+}

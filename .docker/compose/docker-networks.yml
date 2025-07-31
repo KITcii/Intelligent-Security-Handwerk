@@ -1,0 +1,5 @@
+networks:
+  ish-userservice:
+    driver: ${NETWORKS_DRIVER}
+  ish-frontend:
+    driver: ${NETWORKS_DRIVER}

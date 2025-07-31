@@ -1,0 +1,55 @@
+services:
+  userservice:
+    container_name: userservice
+    image: ish-userservice/userservice:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    expose:
+      - '${USER_SERVICE_HOST_HTTP_PORT}:8080'
+    environment:
+      - DEPLOY_ENV=production
+      - SKIP_VERIFICATION=${SKIP_VERIFICATION}
+      - NOTIFICATION_SERVICE=${NOTIFICATION_SERVICE}
+      - APP_HOST=${APP_HOST}
+      - JWT_SECRET=${JWT_SECRET}
+      - DB_NAME=${DB_NAME}
+      - DB_SCHEMAS=${DB_SCHEMAS}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - DB_URL=${DB_URL}
+      - DB_DRIVER=${DB_DRIVER}
+      - HIBERNATE_DIALECT=${HIBERNATE_DIALECT}
+      - FLYWAY_IDENTITY_SYNTAX=${FLYWAY_IDENTITY_SYNTAX}
+      - SMPT_HOST=${SMPT_HOST}
+      - SMPT_PORT=${SMPT_PORT}
+      - MAIL_USER=${MAIL_USER}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+    depends_on:
+      - mariadb
+    networks:
+      - ish-userservice
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.11
+    restart: unless-stopped
+    expose:
+      - '3306:3306'  # Expose MariaDB to the host for manual access
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mariadb-data:/var/lib/mysql  # Persist database data
+    networks:
+      - ish-userservice
+
+networks:
+  ish-userservice:
+    driver: ${NETWORKS_DRIVER}
+
+volumes:
+  mariadb-data:

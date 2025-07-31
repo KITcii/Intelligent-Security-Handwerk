@@ -1,0 +1,49 @@
+include:
+  - ./docker-networks.yml
+services:
+  node:
+    extends:
+      file: ../node/docker-compose.yml
+      service: node
+    environment:
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+    container_name: node_dev
+    build:
+      target: dev
+    command: npm run dev
+    volumes:
+      - ish-app-dir:/app
+    ports:
+      - "${NODE_HOST_PORT}:3000"
+  nginx:
+    extends:
+      file: ../nginx/docker-compose.yml
+      service: nginx
+    container_name: nginx_dev
+    expose:
+      - ${NODE_HOST_PORT}
+  userservice:
+    extends:
+      file: ../backend/compose-production.yaml
+      service: userservice
+    container_name: userservice_dev
+  mariadb:
+    extends:
+      file: ../backend/compose-production.yaml
+      service: mariadb
+    container_name: mariadb_dev
+volumes:
+  ish-app-dir:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${APP_CODE_PATH_HOST}
+  certbot-www:
+  certbot-certs:
+  mariadb-data:
+secrets:
+  dhparam.pem:
+    file: ../shared/certs/tls/snakeoil/dhparam.pem
+  NEXTAUTH_SECRET:
+    file: ../shared/secrets/NEXTAUTH_SECRET

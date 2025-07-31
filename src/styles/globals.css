@@ -1,0 +1,371 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    /* carnation-400 */
+    --destructive: 0 100% 68.04%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    /* Accent colors */
+    /* shakespeare-400 */
+    --color-accents-one: 196 62% 54%;
+    /* shamrock-400 */
+    --color-accents-two: 162 65% 55%;
+
+    /* Contrast colors */
+    /* gray-50 */
+    --color-contrast-verylight: 210 20% 98.04%;
+    /* gray-100 */
+    --color-contrast-light: 220 14.29% 95.88%;
+    /* gray-200 */
+    --color-contrast-neutral: 220 13.04% 90.98%;
+    /* gray-400 */
+    --color-contrast-semidark: 217.89 10.61% 64.9%;
+    /* gray-600 */
+    --color-contrast-dark: 215 13.79% 34.12%;
+    /* gray-800 */
+    --color-contrast-verydark: 215 27.91% 16.86%;
+
+    /* Text colors */
+    /* black */
+    --color-text-normal: 0 0% 0%;
+    /* gray-600 */
+    --color-text-muted: 215 13.79% 34.12%;
+    /* gray-400 */
+    --color-text-disabled: 217.89 10.61% 64.9%;
+    /* white */
+    --color-text-contrast: 0 0% 100%;
+
+    /* Warning colors */
+    /* shakespeare-300 */
+    --color-danger-none: 195.28 67.09% 69.02%;
+    /* amber-400 */
+    --color-danger-low: 43.26 96.41% 56.27%;
+    /* orange-500 */
+    --color-danger-mid: 24.58 94.98% 53.14%;
+    /* carnation-400 */
+    --color-danger-high: 0 100% 68.04%;
+    /* carnation-700 */
+    --color-danger-critical: 0 81.31% 41.96%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+  html {
+    font-size: 14px;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-poppins);
+  }
+}
+
+@layer utilities {
+  .c-h2 {
+    @apply text-lg font-semibold;
+  }
+
+  .c-list-decimal {
+    @apply space-y-2 ps-7;
+  }
+  .c-list-decimal li {
+    @apply list-outside list-decimal;
+  }
+
+  .c-list-disc {
+    @apply space-y-2 ps-7;
+  }
+
+  .c-list-disc li {
+    @apply list-outside list-disc;
+  }
+
+  .wrapper {
+    @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .inline-link:hover {
+    @apply underline;
+  }
+
+  .external-link {
+    @apply inline-link;
+  }
+
+  .external-link::after {
+    font-family: "Material Symbols Outlined";
+    content: "open_in_new";
+    @apply inline-block align-middle ms-1;
+  }
+
+  .download-link {
+    @apply inline-link;
+  }
+
+  .download-link::after {
+    font-family: "Material Symbols Outlined";
+    content: "download";
+    @apply inline-block align-middle ms-1;
+  }
+
+  .button {
+    @apply bg-contrast-dark text-base;
+  }
+
+  .button:hover {
+    @apply bg-highlight-50 text-tc-contrast !important;
+  }
+
+  .button-outline {
+    @apply button bg-tc-contrast text-tc !important;
+  }
+
+  .button-subtle {
+    @apply button bg-contrast-neutral text-tc !important;
+  }
+
+  .button-contrast {
+    @apply button bg-contrast-neutral text-tc !important;
+  }
+
+  .button-highlight {
+    @apply button bg-highlight-50 text-tc-contrast !important;
+  }
+
+  .button-highlight:hover {
+    @apply bg-highlight-100 text-tc-contrast !important;
+  }
+
+  .button-muted {
+    @apply button bg-contrast-neutral text-contrast-semidark !important;
+  }
+
+  .button-muted:hover {
+    @apply bg-contrast-neutral text-contrast-semidark !important;
+  }
+
+  .button-success {
+    @apply button bg-highlight-100 !important;
+  }
+
+  .button-danger {
+    @apply button bg-danger-high !important;
+  }
+
+  .rotate-button:hover .rotate-button-icon {
+    @apply rotate-[230deg];
+  }
+}
+
+/* Google Material Symbols styles */
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.bold {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 700,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.heavy {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 700,
+    "GRAD" 200,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.thin {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 100,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.semithin {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 200,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.fillhover:hover {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.fillhover:hover {
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+.material-symbols-outlined.md-xs {
+  @apply text-sm;
+}
+
+.material-symbols-outlined.md-s {
+  @apply text-lg;
+}
+
+.material-symbols-outlined.md-m {
+  @apply text-2xl;
+}
+
+.material-symbols-outlined.md-l {
+  @apply text-4xl;
+}
+
+.material-symbols-outlined.md-xl {
+  @apply text-5xl;
+}
+
+.material-symbols-outlined.md-1-5xl {
+  @apply text-[3.4rem];
+}
+
+.material-symbols-outlined.md-2xl {
+  @apply text-8xl;
+}
+
+.material-symbols-outlined.md-3xl {
+  @apply text-9xl;
+}
+
+.CardStyleTable {
+  @apply border-separate border-spacing-0 border-spacing-y-3;
+}
+
+.CardStyleTableBody td {
+  @apply border-y py-6 border-contrast-neutral;
+}
+
+.CardStyleTableBody td:first-child {
+  @apply border-s border-y rounded-l-xl border-contrast-neutral;
+}
+
+.CardStyleTableBody td:last-child {
+  @apply border-e border-y rounded-r-xl border-contrast-neutral;
+}
+
+.CardStyleTableBody tr {
+  box-shadow: 0px 5px 10px -9px rgba(0, 0, 0, 0.3);
+}
+
+.CardStyleTableColumnHeadButton {
+  @apply py-1 text-base px-0 hover:bg-transparent !important;
+}
+
+/* Root layer styles */
+
+.h1-heading {
+  @apply text-4xl font-bold mb-8 hyphens-auto;
+}
+
+.default-page-wrapper {
+  @apply max-[310px]:w-[260px] sm:w-[350px];
+}
+
+.registerFormPageWrapper {
+  @apply min-[850px]:w-[600px];
+}
+
+.default-content-wrapper {
+  @apply sm:min-w-[600px];
+}

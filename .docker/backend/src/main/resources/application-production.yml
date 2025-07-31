@@ -1,0 +1,63 @@
+spring:
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+    driver-class-name: ${DB_DRIVER}
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none  # Ensure Flyway manages schema changes in production
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT}  # Use the correct dialect for MariaDB
+        format_sql: false  # Disable SQL formatting for production to improve performance
+
+  h2:
+    console:
+      enabled: false
+
+  flyway:
+    locations: classpath:db/migration   # Only production migrations
+    #baseline-on-migrate: true           # Required if the database is not empty (useful for existing schemas)
+    baseline-version: 1                 # Baseline version to start migrations from
+    validate-on-migrate: true           # Ensure scripts are valid and not modified
+    clean-on-validation-error: true     # Optional: Set to true during dev if you want Flyway to reset on validation errors
+    clean-disabled: false
+    placeholders:
+      identity_syntax: ${FLYWAY_IDENTITY_SYNTAX}
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api/v1.0/users/api-docs
+  swagger-ui:
+    enabled: true
+    path: /api/v1.0/users/swagger-ui
+  show-login-endpoint: true
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.boot: INFO
+    org.springframework.security: INFO
+    ish.user.*: INFO
+    org.hibernate:
+      SQL: INFO
+      type: INFO
+      type.descriptor.sql.BasicBinder: INFO
+      engine.jdbc.spi.SqlExceptionHelper: ERROR
+  # config can be omitted due to autodiscover when named logback.xml
+  config: classpath:logback-dev.xml
+
+server:
+  error:
+    include-stacktrace: never
+
+ish:
+  error:
+    handling:
+      stacktrace: false
+  auth:
+    skip-verification: ${SKIP_VERIFICATION}

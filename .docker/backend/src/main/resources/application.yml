@@ -1,0 +1,73 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+  profiles:
+    active: ${DEPLOY_ENV}
+
+  cache:
+    type: simple
+
+  jpa:
+    show-sql: false # Enable SQL logging for debugging in dev. Set to false, since it prints directly to std out
+    hibernate:
+      # for production set to 'validate'
+      ddl-auto: none
+
+  h2:
+    console:
+      enabled: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration  # Folder where Flyway looks for migration scripts
+    #baseline-on-migrate: true         # Required if the database is not empty (useful for existing schemas)
+    baseline-version: 1               # Baseline version to start migrations from
+    validate-on-migrate: true         # Ensure scripts are valid and not modified
+    clean-on-validation-error: false  # Optional: Set to true during dev if you want Flyway to reset on validation errors
+    encoding: UTF-8
+
+  main:
+    banner-mode: OFF
+
+  mail:
+    host: ${SMPT_HOST}
+    port: ${SMPT_PORT}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASSWORD}
+    properties.mail.smtp:
+      starttls.enable: true
+      starttls.required: true
+      auth: true
+      connectiontimeout: 5000
+      timeout: 5000
+      writetimeout: 5000
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.boot: INFO
+    ish.user.*: DEBUG
+    org.hibernate.SQL: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type: INFO
+
+server:
+  error:
+    # when to include a stacktrace attribute (never/always)
+    include-stacktrace: never
+
+ish:
+  app:
+    host: ${APP_HOST}
+  error:
+    handling:
+      stacktrace: false
+  jwt:
+    secret: ${JWT_SECRET}
+    # 24 hours
+    expirationMs: 86400000
+  auth:
+    skip-verification: false
+  notification:
+    service: ${NOTIFICATION_SERVICE} # mail or console

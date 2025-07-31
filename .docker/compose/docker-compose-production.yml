@@ -1,0 +1,42 @@
+include:
+  - ./docker-networks.yml
+services:
+  node:
+    extends:
+      file: ../node/docker-compose.yml
+      service: node
+    environment:
+      - NEXTAUTH_SECRET='DOCKER-SECRET->nextauth_secret.key'
+    secrets:
+      - nextauth_secret.key
+  nginx:
+    extends:
+      file: ../nginx/docker-compose.yml
+      service: nginx
+  userservice:
+    extends:
+      file: ../backend/compose-production.yaml
+      service: userservice
+  certbot:
+    extends:
+      file: ../certbot/docker-compose.yml
+      service: certbot
+  mariadb:
+    extends:
+      file: ../backend/compose-production.yaml
+      service: mariadb
+volumes:
+  ish-app-dir:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${APP_CODE_PATH_HOST}
+  certbot-www:
+  certbot-certs:
+  mariadb-data:
+secrets:
+  dhparam.pem:
+    file: ../secrets/dhparam.pem
+  nextauth_secret.key:
+    file: ../secrets/nextauth_secret.key

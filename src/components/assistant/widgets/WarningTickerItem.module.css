@@ -1,0 +1,13 @@
+.tickerbar {
+  position: relative;
+  @apply p-2 pe-5 me-5 w-28 uppercase;
+}
+
+.tickerbar::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  @apply bg-gray-400 h-2 w-2;
+}

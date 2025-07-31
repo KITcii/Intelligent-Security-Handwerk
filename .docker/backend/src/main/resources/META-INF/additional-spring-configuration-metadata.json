@@ -1,0 +1,21 @@
+{
+  "properties": [
+    {
+      "name": "ish.error.handling.stacktrace",
+      "type": "java.lang.Boolean",
+      "description": "Boolean option that controls whether stacktrace is included in log and HTTP response. Default is false.",
+      "sourceType": "ish.user.exception.GlobalExceptionHandlerDev",
+      "defaultValue": false
+    },
+    {
+      "name": "ish.jwt.secret",
+      "type": "java.lang.String",
+      "description": "Property that saves JWT secret. No default value."
+    },
+    {
+      "name": "ish.jwt.expirationMs",
+      "type": "java.lang.Integer",
+      "description": "Expiration time for JWT in ms. Default is 86400000 (equal to 24 hours).",
+      "defaultValue": 86400000
+    }
+  ] }

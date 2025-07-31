@@ -1,0 +1,19 @@
+services:
+  certbot:
+    image: ish/certbot:latest
+    container_name: certbot
+    depends_on:
+      - nginx
+    restart: unless-stopped
+    build:
+      context: ../../
+      dockerfile: ./.docker/certbot/Dockerfile
+      args:
+        - WWW_USER_GROUP_UID=${WWW_USER_GROUP_UID}
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --post-hook /etc/letsencrypt/renewal-hooks/deploy/update_permissions.sh; sleep 12h & wait $${!}; done;'"
+    volumes:
+      - certbot-certs:/etc/letsencrypt:rw
+      - certbot-www:/var/www/certbot:rw
+      - ./scripts/update_permissions.sh:/etc/letsencrypt/renewal-hooks/deploy/update_permissions.sh
+    networks:
+      ish-frontend:

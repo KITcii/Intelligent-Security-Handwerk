@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Bestätigen Sie Ihre E-Mail-Adresse</title>
+</head>
+<body>
+<p>Hallo <b th:text="${name}"></b>,</p>
+<p>Willkommen! Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie auf den folgenden Link klicken:</p>
+<p><a th:href="${url}" target="_blank">E-Mail bestätigen</a></p>
+<p>Ihr Bestätigungscode: <b th:text="${token}"></b></p>
+<p>Vielen Dank!<br>Ihr Team</p>
+</body>
+</html>

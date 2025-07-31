@@ -1,0 +1,44 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:user-test-db
+    driverClassName: org.h2.Driver
+    password: h2-init
+
+  flyway:
+    enabled: false
+
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: false
+    show-sql: false
+
+  main:
+    banner-mode: OFF
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework:
+      boot: INFO
+      boot.test.*: TRACE
+      test.web.servlet.*: TRACE
+    ish.user.*: DEBUG
+    org.hibernate:
+      SQL: DEBUG
+      type: INFO
+      type.descriptor.sql.BasicBinder: INFO
+      orm.jdbc.bind: TRACE
+  config: classpath:logback-test.xml
+
+ish:
+  jwt:
+    secret: ${JWT_SECRET}
+    # 24 hours
+    expirationMs: 86400000

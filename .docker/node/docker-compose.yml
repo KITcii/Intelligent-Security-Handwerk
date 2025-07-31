@@ -1,0 +1,27 @@
+services:
+  node:
+    image: ish/node:latest
+    container_name: node
+    build:
+      context: ../../
+      dockerfile: ./.docker/node/Dockerfile
+      target: runner
+      args:
+        - APP_CODE_PATH_HOST=${APP_CODE_PATH_HOST_REL}
+        - SERVICE_DIR=./.docker/node
+    environment:
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_URL_INTERNAL=${NEXTAUTH_URL_INTERNAL}
+      - BACKEND_API_URL=${BACKEND_API_URL}
+      - APP_HOST=${APP_HOST}
+      - NODE_ENV=${DEPLOY_ENV}
+      - HOSTNAME=node_frontend
+    restart: unless-stopped
+    working_dir: /app
+    networks:
+      ish-userservice:
+        aliases:
+          - node_backend
+      ish-frontend:
+        aliases:
+          - node_frontend

@@ -1,0 +1,19 @@
+.spiderDiagram {
+  @apply w-full h-full;
+}
+.spiderText {
+  @apply text-base;
+}
+.spiderFill {
+  @apply fill-highlight-100 stroke-1 stroke-highlight-100 opacity-80;
+}
+.spiderCircle {
+  stroke-dasharray: 1 5;
+  @apply stroke-contrast-semidark stroke-1 fill-contrast-neutral/30;
+}
+.spiderCrossLine {
+  @apply stroke-contrast-semidark stroke-1 fill-none;
+}
+.spiderMarker {
+  @apply fill-highlight-50;
+}

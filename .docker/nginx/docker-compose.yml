@@ -1,0 +1,39 @@
+services:
+  nginx:
+    image: ish/nginx:latest
+    container_name: nginx
+    build:
+      context: ../../
+      dockerfile: ./.docker/nginx/Dockerfile
+      args:
+        - APP_HOST=${APP_HOST}
+        - TIMEZONE=${TIMEZONE}
+        - DEPLOY_ENV=${DEPLOY_ENV}
+        - SHARED_DIR=./.docker/shared
+        - SERVICE_DIR=./.docker/nginx
+        - WWW_USER_GROUP_UID=${WWW_USER_GROUP_UID}
+        - WWW_USER_UID=${WWW_USER_UID}
+    environment:
+      - NODE_CONTAINER_URL=${NODE_CONTAINER_URL}
+      - APP_HOST=${APP_HOST}
+      - CERT_PATH_CONTAINER=${CERT_PATH_CONTAINER}
+    working_dir: /etc/nginx/
+    restart: unless-stopped
+    volumes:
+      - certbot-certs:${CERT_ROOT_LIVE}:ro
+      - certbot-www:/var/www/certbot:ro
+      - ../shared/certs/tls/snakeoil/fullchain.pem:${CERT_ROOT}/snakeoil/fullchain.pem:ro
+      - ../shared/certs/tls/snakeoil/privkey.pem:${CERT_ROOT}/snakeoil/privkey.pem:ro
+      - ./config/templates:/etc/nginx/templates
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    secrets:
+      - dhparam.pem
+    ports:
+      - "${HTTPD_HOST_HTTP_PORT}:80"
+      - "${HTTPD_HOST_HTTPS_PORT}:443"
+    depends_on:
+      - node
+    networks:
+      ish-frontend:
+        aliases:
+          - ${APP_HOST}

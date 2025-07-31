@@ -1,0 +1,24 @@
+.SubHeading {
+  @apply font-semibold text-base w-full border-b mb-4;
+}
+
+.SubSection {
+  @apply bg-background shadow-sm rounded-lg p-4;
+}
+
+.SubSectionHighlight {
+  @apply SubSection;
+  @apply bg-highlight-100 text-tc-contrast !important;
+}
+
+.OrgListLabel {
+  @apply col-span-2 py-2 px-2 bg-contrast-light font-semibold content-start;
+}
+
+.OrgListValue {
+  @apply col-span-4 px-2 py-2 content-center;
+}
+
+.TopicBadge {
+  @apply text-base px-4 py-0 text-nowrap bg-highlight-50 text-tc-contrast hover:text-tc;
+}

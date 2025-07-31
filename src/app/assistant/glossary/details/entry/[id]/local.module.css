@@ -1,0 +1,9 @@
+.dbHTML p {
+  @apply my-2;
+}
+.dbHTML ul {
+  @apply my-3;
+}
+.dbHTML li {
+  @apply list-disc list-outside ms-5 my-1;
+}

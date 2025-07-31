@@ -1,0 +1,43 @@
+.FormSection {
+  @apply text-base;
+}
+
+.SectionHeader {
+  @apply text-2xl font-bold text-highlight-50 w-full border-b border-contrast-semidark pb-4;
+}
+
+.SectionContent {
+  @apply w-full bg-contrast-verylight py-6 px-3 grid gap-x-6 gap-y-6 grid-cols-1 min-[550px]:grid-cols-2;
+}
+
+.SectionContentWide {
+  @apply w-full bg-contrast-verylight py-6 px-3 grid grid-cols-1 gap-x-6 gap-y-4;
+}
+
+.FormLabel {
+  @apply text-base;
+}
+
+.FormMessage {
+  @apply text-base text-danger-high font-semibold max-[549px]:ms-4;
+}
+
+.Required {
+  @apply ms-1 text-danger-high;
+}
+
+.AddressFieldItem {
+  @apply grid grid-cols-2 min-[550px]:grid-cols-3 sm:grid-cols-4 space-y-0 h-10 items-center align-middle;
+}
+
+.AddressFormLabel {
+  @apply text-base;
+}
+
+.AddressFormField {
+  @apply text-base;
+}
+
+.AddresSkeleton {
+  @apply h-6 w-full sm:w-56;
+}

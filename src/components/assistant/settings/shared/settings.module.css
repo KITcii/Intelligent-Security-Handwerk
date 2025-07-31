@@ -1,0 +1,57 @@
+.SettingsForm {
+  @apply flex flex-col gap-4;
+}
+
+.SettingsFormItem {
+  @apply grid sm:grid-cols-8 gap-y-1 space-y-0 items-center;
+}
+
+.SettingsFormLabelDefault {
+  @apply text-base leading-tight font-medium;
+}
+.SettingsFormLabel {
+  @apply SettingsFormLabelDefault col-span-8 sm:col-span-3 xl:col-span-2 overflow-hidden text-ellipsis;
+}
+.SettingsFormLabelWide {
+  @apply SettingsFormLabelDefault col-span-3;
+}
+
+.SettingsFormLabelUltraWide {
+  @apply SettingsFormLabelDefault col-span-5;
+}
+
+.SettingsFormControl {
+  @apply col-span-5 xl:col-span-6;
+}
+.SettingsFormControlWide {
+  @apply col-span-5;
+}
+
+.SettingsFormControlUltraWide {
+  @apply col-span-3 place-self-end;
+}
+
+.SettingsFormMessage {
+  @apply text-base col-start-3 col-span-6;
+}
+
+.SettingsFormMessageWide {
+  @apply text-base col-start-4 col-span-6;
+}
+
+.SettingsFormMessageUltraWide {
+  @apply text-base col-start-4 col-span-6;
+}
+
+.SettingsFormError {
+  @apply text-danger-high font-medium mt-5;
+}
+.SettingsSectionFooter {
+  @apply mt-6;
+}
+.SettingsSectionButtonRow {
+  @apply flex flex-row justify-end items-center mt-4;
+}
+.SettingsSubmitButton {
+  @apply w-fit text-base;
+}
