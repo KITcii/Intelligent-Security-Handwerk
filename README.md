@@ -17,6 +17,7 @@ This repository contains the source code for both the **backend** (Java/Spring B
   - [Installation & Configuration](#installation--configuration)
   - [Setting up SSL with Let's Encrypt](#setting-up-ssl-with-lets-encrypt)
 - [Local Development Setup](#local-development-setup)
+- [Authors](#authors)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -130,7 +131,7 @@ After the initial startup, follow these steps to replace the self-signed certifi
 These instructions are for setting up a local development environment.
 
 1.  **Follow initial setup:**
-    Complete steps 1-3 from the [Installation & Configuration](#installation--configuration) section above.
+    Complete steps 1–3 from the [Installation & Configuration](#installation--configuration) section above.
 
 2.  **Create the development environment file:**
     Copy the development example file. This configures services like the backend to use an in-memory H2 database.
@@ -152,9 +153,14 @@ These instructions are for setting up a local development environment.
     -   **Backend API**: `https://localhost:8989/`
     -   **H2 Database Console**: `http://localhost:8989/h2-ui` (as configured in `application-development.yml`)
 
+## Authors
+
+- [**Dr. Benjamin Sturm**](https://github.com/BenjaminSturm)
+- [**Mikael Beyene**](https://github.com/mbe24)
+
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
