@@ -15,7 +15,7 @@ services:
       service: nginx
   userservice:
     extends:
-      file: ../backend/compose-production.yaml
+      file: ../../backend/compose-production.yaml
       service: userservice
   certbot:
     extends:
@@ -23,7 +23,7 @@ services:
       service: certbot
   mariadb:
     extends:
-      file: ../backend/compose-production.yaml
+      file: ../../backend/compose-production.yaml
       service: mariadb
 volumes:
   ish-app-dir:

@@ -24,12 +24,12 @@ services:
       - ${NODE_HOST_PORT}
   userservice:
     extends:
-      file: ../backend/compose-production.yaml
+      file: ../../backend/compose-production.yaml
       service: userservice
     container_name: userservice_dev
   mariadb:
     extends:
-      file: ../backend/compose-production.yaml
+      file: ../../backend/compose-production.yaml
       service: mariadb
     container_name: mariadb_dev
 volumes:
